@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/*
+  Locked dark palette. One accent, cool cyan, used for focus and hover only.
+  Z-index: grid overlay sits behind the page; the nav is the only sticky layer.
+  Corner rule: nav and buttons are pills; work cards use a 2rem shell.
+*/
+
+:root {
+  --background: #08090b;
+  --foreground: #ececee;
+  --muted: #a1a1aa;
+  --accent: #3aafa4;
+  --grid: rgb(255 255 255 / 0.045);
+  --nav: rgb(8 9 11 / 0.82);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Atmosphere only. Fades out so it does not read as a full-page crosshair. */
+.site-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 50% 20%, black 10%, transparent 72%);
+}
+
+/* Frosted-glass approximation for the nav. Not Apple Liquid Glass. */
+.site-nav {
+  background: var(--nav);
+  backdrop-filter: blur(20px) saturate(1.4);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-nav {
+    background: var(--background);
+    backdrop-filter: none;
+  }
+}
