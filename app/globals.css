@@ -78,7 +78,7 @@ body {
 }
 
 .hero-name-track {
-  animation: hero-name-slide 26s linear infinite;
+  animation: hero-name-slide 64s linear infinite;
 }
 
 /* Opaque sheet so the dark page covers the sticky hero. Grid sits behind the sections. */
@@ -127,11 +127,14 @@ body {
     transform: none !important;
   }
 
-  .hero-name-copy {
+  .hero-name-copy,
+  .hero-name-extra,
+  .hero-name-mark {
     display: none;
   }
 
   .hero-name {
+    display: block;
     max-width: 10ch;
     white-space: normal !important;
     font-size: clamp(3.25rem, 14vw, 6rem) !important;

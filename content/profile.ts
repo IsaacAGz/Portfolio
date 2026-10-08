@@ -48,10 +48,19 @@ export const profile = {
   ],
   projects: [
     {
+      name: "Card Scanner",
+      summary:
+        "A service that finds Magic: The Gathering cards in photos and video, names them against official art, and exports straightened crops.",
+      stack: ["Python", "FastAPI", "YOLO", "OpenCV"],
+      image: "/work/card-scanner.jpg",
+      repoUrl: "https://github.com/IsaacAGz/Card-Scanner",
+    },
+    {
       name: "Casa Toro",
       summary:
         "A bilingual site for a cabin in Valle de Guadalupe, between Tecate and Ensenada. I designed and built it in Astro, and stay inquiries open WhatsApp.",
       stack: ["Astro", "Vue", "Tailwind CSS"],
+      image: "/work/casa-toro.jpg",
       liveUrl: "https://casa-toro-eight.vercel.app/en/",
       repoUrl: "https://github.com/IsaacAGz/Casa-Toro",
     },
@@ -60,6 +69,7 @@ export const profile = {
       summary:
         "A Spanish site for a Tijuana meal-prep kitchen. The order form writes a complete WhatsApp message, and payment happens later by transfer.",
       stack: ["Next.js", "TypeScript", "MapLibre", "Cloudflare"],
+      image: "/work/power-meals.jpg",
       liveUrl: "https://power-meals.isaac-angulogomez.workers.dev/",
     },
     {
@@ -67,14 +77,8 @@ export const profile = {
       summary:
         "A planner that drafts a day-by-day driving itinerary, then checks every drive against real routing data. Impossible trips are rejected before the model runs.",
       stack: ["Python", "FastAPI", "React", "Leaflet"],
+      image: "/work/roadtrip-planner.png",
       repoUrl: "https://github.com/IsaacAGz/Roadtrip-Planner",
-    },
-    {
-      name: "Card Scanner",
-      summary:
-        "A service that finds Magic: The Gathering cards in photos and video, names them against official art, and exports straightened crops.",
-      stack: ["Python", "FastAPI", "YOLO", "OpenCV"],
-      repoUrl: "https://github.com/IsaacAGz/Card-Scanner",
     },
   ],
 } as const;

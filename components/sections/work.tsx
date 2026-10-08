@@ -50,7 +50,7 @@ function ProjectFrame({ image, name }: { image?: string; name: string }) {
           alt={name}
           fill
           sizes="(min-width: 768px) 22rem, 100vw"
-          className="object-cover"
+          className="object-cover object-top"
         />
       ) : null}
     </div>
@@ -99,55 +99,41 @@ function ProjectBody({
   );
 }
 
-export function WorkSection() {
-  const [featured, ...rest] = profile.projects;
+function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: (typeof profile.projects)[number];
+  featured?: boolean;
+}) {
+  return (
+    <ProjectShell>
+      <div className="grid items-center gap-8 rounded-[calc(2rem-0.375rem)] bg-background p-8 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] md:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] md:p-12">
+        <div>
+          <ProjectBody
+            name={project.name}
+            summary={project.summary}
+            stack={project.stack}
+            featured={featured}
+          />
+          <ProjectLinks
+            liveUrl={"liveUrl" in project ? project.liveUrl : undefined}
+            repoUrl={"repoUrl" in project ? project.repoUrl : undefined}
+          />
+        </div>
+        <ProjectFrame image={projectImage(project)} name={project.name} />
+      </div>
+    </ProjectShell>
+  );
+}
 
+export function WorkSection() {
   return (
     <SectionFrame id="work" title="Work">
       <div className="flex flex-col gap-4">
-        {featured ? (
-          <ProjectShell>
-            <div className="grid items-center gap-8 rounded-[calc(2rem-0.375rem)] bg-background p-8 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] md:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] md:p-12">
-              <div>
-                <ProjectBody
-                  name={featured.name}
-                  summary={featured.summary}
-                  stack={featured.stack}
-                  featured
-                />
-                <ProjectLinks
-                  liveUrl={"liveUrl" in featured ? featured.liveUrl : undefined}
-                  repoUrl={"repoUrl" in featured ? featured.repoUrl : undefined}
-                />
-              </div>
-              <ProjectFrame image={projectImage(featured)} name={featured.name} />
-            </div>
-          </ProjectShell>
-        ) : null}
-        {rest.length > 0 ? (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {rest.map((project) => (
-              <ProjectShell key={project.name}>
-                <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] bg-background p-7 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] md:p-8">
-                  <ProjectFrame image={projectImage(project)} name={project.name} />
-                  <div className="mt-6">
-                    <ProjectBody
-                      name={project.name}
-                      summary={project.summary}
-                      stack={project.stack}
-                    />
-                  </div>
-                  <div className="mt-auto">
-                    <ProjectLinks
-                      liveUrl={"liveUrl" in project ? project.liveUrl : undefined}
-                      repoUrl={"repoUrl" in project ? project.repoUrl : undefined}
-                    />
-                  </div>
-                </div>
-              </ProjectShell>
-            ))}
-          </div>
-        ) : null}
+        {profile.projects.map((project, index) => (
+          <ProjectCard key={project.name} project={project} featured={index === 0} />
+        ))}
       </div>
     </SectionFrame>
   );

@@ -1,6 +1,37 @@
 import { ContactLinks } from "@/components/contact-links";
 import Image from "next/image";
 
+const nameRepeats = [0, 1, 2];
+
+const nameStyle =
+  "flex items-center text-[clamp(4.25rem,12.5vw,10rem)] leading-none font-medium tracking-[-0.05em] whitespace-nowrap text-foreground";
+
+function NameLine({ name, heading }: { name: string; heading?: boolean }) {
+  const Tag = heading ? "h1" : "div";
+
+  return (
+    <Tag
+      id={heading ? "hero-title" : undefined}
+      aria-hidden={heading ? undefined : true}
+      className={heading ? `hero-name ${nameStyle}` : `hero-name-copy ${nameStyle}`}
+    >
+      {nameRepeats.map((index) => (
+        <span key={index} className={index === 0 ? undefined : "hero-name-extra"}>
+          {index > 0 ? (
+            <span aria-hidden="true" className="hero-name-mark px-[0.35em]">
+              -
+            </span>
+          ) : null}
+          <span aria-hidden={index === 0 ? undefined : true}>{name}</span>
+        </span>
+      ))}
+      <span aria-hidden="true" className="hero-name-mark px-[0.35em]">
+        -
+      </span>
+    </Tag>
+  );
+}
+
 export function HeroStage({
   role,
   name,
@@ -41,18 +72,8 @@ export function HeroStage({
         </div>
         <div className="hero-name-frame pointer-events-none absolute top-[42%] left-0 z-10 w-full overflow-hidden">
           <div className="hero-name-track flex w-max">
-            <h1
-              id="hero-title"
-              className="hero-name pr-[0.45em] text-[clamp(4.25rem,12.5vw,10rem)] leading-none font-medium tracking-[-0.05em] whitespace-nowrap text-foreground"
-            >
-              {name}
-            </h1>
-            <span
-              aria-hidden="true"
-              className="hero-name-copy pr-[0.45em] text-[clamp(4.25rem,12.5vw,10rem)] leading-none font-medium tracking-[-0.05em] whitespace-nowrap text-foreground"
-            >
-              {name}
-            </span>
+            <NameLine name={name} heading />
+            <NameLine name={name} />
           </div>
         </div>
         <div className="relative z-10 flex h-full flex-col">
