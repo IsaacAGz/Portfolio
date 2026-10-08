@@ -1,0 +1,19 @@
+[Unit]
+Description=Portfolio Next.js server
+After=network.target
+
+[Service]
+Type=simple
+User=__RUN_USER__
+Group=__RUN_USER__
+WorkingDirectory=__APP_ROOT__/.next/standalone
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOSTNAME=127.0.0.1
+EnvironmentFile=/etc/portfolio.env
+ExecStart=__NODE__ server.js
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

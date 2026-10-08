@@ -1,4 +1,6 @@
 import { ArrowUpRight } from "@phosphor-icons/react/ssr";
+import Image from "next/image";
+import { ProjectShell } from "@/components/project-shell";
 import { SectionFrame } from "@/components/section-frame";
 import { profile } from "@/content/profile";
 
@@ -6,20 +8,22 @@ function ProjectLinks({
   liveUrl,
   repoUrl,
 }: {
-  liveUrl: string;
+  liveUrl?: string;
   repoUrl?: string;
 }) {
   return (
     <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-      <a
-        href={liveUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-sm text-foreground motion-safe:transition-colors motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)] hover:text-accent"
-      >
-        Live site
-        <ArrowUpRight size={14} weight="light" aria-hidden="true" />
-      </a>
+      {liveUrl ? (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm text-foreground motion-safe:transition-colors motion-safe:duration-500 motion-safe:ease-[cubic-bezier(0.32,0.72,0,1)] hover:text-accent"
+        >
+          Live site
+          <ArrowUpRight size={14} weight="light" aria-hidden="true" />
+        </a>
+      ) : null}
       {repoUrl ? (
         <a
           href={repoUrl}
@@ -32,6 +36,33 @@ function ProjectLinks({
       ) : null}
     </div>
   );
+}
+
+function ProjectFrame({ image, name }: { image?: string; name: string }) {
+  return (
+    <div
+      className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10"
+      aria-hidden={image ? undefined : true}
+    >
+      {image ? (
+        <Image
+          src={image}
+          alt={name}
+          fill
+          sizes="(min-width: 768px) 22rem, 100vw"
+          className="object-cover"
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function projectImage(project: object) {
+  if (!("image" in project) || typeof project.image !== "string") {
+    return undefined;
+  }
+
+  return project.image;
 }
 
 function ProjectBody({
@@ -75,36 +106,45 @@ export function WorkSection() {
     <SectionFrame id="work" title="Work">
       <div className="flex flex-col gap-4">
         {featured ? (
-          <article className="rounded-[2rem] border border-white/10 bg-white/5 p-1.5">
-            <div className="rounded-[calc(2rem-0.375rem)] bg-background p-8 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] md:p-12">
-              <ProjectBody
-                name={featured.name}
-                summary={featured.summary}
-                stack={featured.stack}
-                featured
-              />
-              <ProjectLinks liveUrl={featured.liveUrl} repoUrl={featured.repoUrl} />
+          <ProjectShell>
+            <div className="grid items-center gap-8 rounded-[calc(2rem-0.375rem)] bg-background p-8 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] md:grid-cols-[minmax(0,1fr)_minmax(16rem,22rem)] md:p-12">
+              <div>
+                <ProjectBody
+                  name={featured.name}
+                  summary={featured.summary}
+                  stack={featured.stack}
+                  featured
+                />
+                <ProjectLinks
+                  liveUrl={"liveUrl" in featured ? featured.liveUrl : undefined}
+                  repoUrl={"repoUrl" in featured ? featured.repoUrl : undefined}
+                />
+              </div>
+              <ProjectFrame image={projectImage(featured)} name={featured.name} />
             </div>
-          </article>
+          </ProjectShell>
         ) : null}
         {rest.length > 0 ? (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {rest.map((project) => (
-              <article
-                key={project.name}
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-1.5"
-              >
+              <ProjectShell key={project.name}>
                 <div className="flex h-full flex-col rounded-[calc(2rem-0.375rem)] bg-background p-7 shadow-[inset_0_1px_0_rgb(255_255_255/0.12)] md:p-8">
-                  <ProjectBody
-                    name={project.name}
-                    summary={project.summary}
-                    stack={project.stack}
-                  />
+                  <ProjectFrame image={projectImage(project)} name={project.name} />
+                  <div className="mt-6">
+                    <ProjectBody
+                      name={project.name}
+                      summary={project.summary}
+                      stack={project.stack}
+                    />
+                  </div>
                   <div className="mt-auto">
-                    <ProjectLinks liveUrl={project.liveUrl} repoUrl={project.repoUrl} />
+                    <ProjectLinks
+                      liveUrl={"liveUrl" in project ? project.liveUrl : undefined}
+                      repoUrl={"repoUrl" in project ? project.repoUrl : undefined}
+                    />
                   </div>
                 </div>
-              </article>
+              </ProjectShell>
             ))}
           </div>
         ) : null}

@@ -1,76 +1,80 @@
 /**
- * Stand-in copy. Replace every field with your own name, jobs, and shipped
- * apps before launch. The page and, later, the chatbot both read this file.
+ * The page and the chatbot both read this file.
  */
 export const profile = {
-  name: "Your Name",
-  role: "Web developer",
-  pitch: "I build and deploy web applications, and I care how they feel to use.",
-  email: "you@example.com",
-  linkedin: "https://www.linkedin.com/in/your-name",
-  github: "https://github.com/example",
+  name: "Isaac Angulo Gomez",
+  role: "Full-stack developer",
+  pitch: "I build web applications, from the interface through to a running deployment.",
+  email: "isaac.angulogomez@gmail.com",
+  linkedin: "https://www.linkedin.com/in/isaac-angulo-gomez-8aa9b61b0/",
+  github: "https://github.com/IsaacAGz",
   about: [
-    "I take a product from the interface through to a running deployment. The work is usually a web app someone else has to rely on, so the screen, the data behind it, and the release all have to hold up.",
-    "I like small teams, a clear problem, and software that is still understandable six months later.",
+    "I live in San Diego and finished a B.S. in Computer Science at San Diego State University in May 2026. I build web platforms, and the APIs and databases behind them.",
+    "I like following a request from the screen through the data and out to a deployment someone can actually open.",
   ],
   skillGroups: [
     {
       name: "Languages",
-      items: ["TypeScript", "JavaScript", "SQL", "HTML", "CSS"],
+      items: ["TypeScript", "JavaScript", "Python", "SQL", "HTML", "CSS"],
     },
     {
       name: "Frameworks",
-      items: ["React", "Next.js", "Node.js"],
+      items: ["React", "Next.js", "Astro", "Vue", "Node.js", "FastAPI"],
     },
     {
       name: "Tools",
-      items: ["Git", "Linux", "AWS", "PostgreSQL"],
+      items: ["PostgreSQL", "SQLite", "Docker", "Git", "Linux", "Cloudflare"],
     },
   ],
   experience: [
     {
-      role: "Web developer",
-      org: "Company name",
-      dates: "2024 — Present",
+      role: "Helpdesk Technician",
+      org: "Turning Point Therapeutics",
+      dates: "Jan 2022 — Aug 2022",
       outcomes: [
-        "Shipped a customer-facing web app and stayed with it after launch.",
-        "Simplified a slow page by cutting extra client work and shortening the data path.",
+        "Supported Windows and Mac users on software, hardware, printers, and network access, and tracked tickets in ServiceNow through resolution or escalation.",
+        "Wrote knowledge-base articles and onboarding guides, and handled account permissions and equipment when people joined or left.",
       ],
     },
     {
-      role: "Junior web developer",
-      org: "Studio name",
-      dates: "2022 — 2024",
+      role: "Cyber Network Operator",
+      org: "United States Marine Corps",
+      dates: "Jan 2017 — June 2021",
       outcomes: [
-        "Built internal tools that replaced a weekly spreadsheet handoff.",
-        "Paired with design on the screens people actually used every day.",
+        "Supported more than 300 users on workstations, applications, and network access, and administered Active Directory accounts and permissions. I hold an active DoD Secret clearance.",
+        "Maintained Linux servers and VMware ESXi hosts, including patching, and wrote the procedures and user guides for that work.",
       ],
     },
   ],
   projects: [
     {
-      name: "Ledger",
+      name: "Casa Toro",
       summary:
-        "A shared budget app for a small team: accounts, monthly totals, and a status page anyone on the project can open.",
-      stack: ["Next.js", "TypeScript", "PostgreSQL"],
-      liveUrl: "https://example.com/ledger",
-      repoUrl: "https://github.com/example/ledger",
+        "A bilingual site for a cabin in Valle de Guadalupe, between Tecate and Ensenada. I designed and built it in Astro, and stay inquiries open WhatsApp.",
+      stack: ["Astro", "Vue", "Tailwind CSS"],
+      liveUrl: "https://casa-toro-eight.vercel.app/en/",
+      repoUrl: "https://github.com/IsaacAGz/Casa-Toro",
     },
     {
-      name: "Harbor",
+      name: "Power Meals",
       summary:
-        "A deployment log that shows what shipped, when it shipped, and whether the check passed.",
-      stack: ["React", "Node.js"],
-      liveUrl: "https://example.com/harbor",
-      repoUrl: "https://github.com/example/harbor",
+        "A Spanish site for a Tijuana meal-prep kitchen. The order form writes a complete WhatsApp message, and payment happens later by transfer.",
+      stack: ["Next.js", "TypeScript", "MapLibre", "Cloudflare"],
+      liveUrl: "https://power-meals.isaac-angulogomez.workers.dev/",
     },
     {
-      name: "Relay",
+      name: "Roadtrip Planner",
       summary:
-        "A lightweight status board for on-call notes, with a public view and a private edit screen.",
-      stack: ["Next.js", "SQL"],
-      liveUrl: "https://example.com/relay",
-      repoUrl: "https://github.com/example/relay",
+        "A planner that drafts a day-by-day driving itinerary, then checks every drive against real routing data. Impossible trips are rejected before the model runs.",
+      stack: ["Python", "FastAPI", "React", "Leaflet"],
+      repoUrl: "https://github.com/IsaacAGz/Roadtrip-Planner",
+    },
+    {
+      name: "Card Scanner",
+      summary:
+        "A service that finds Magic: The Gathering cards in photos and video, names them against official art, and exports straightened crops.",
+      stack: ["Python", "FastAPI", "YOLO", "OpenCV"],
+      repoUrl: "https://github.com/IsaacAGz/Card-Scanner",
     },
   ],
 } as const;

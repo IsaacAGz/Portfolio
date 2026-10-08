@@ -2,7 +2,7 @@
 
 /*
   Locked dark palette. One accent, cool cyan, used for focus and hover only.
-  Z-index: grid overlay sits behind the page; the nav is the only sticky layer.
+  Z-index: the grid sits behind the page, the nav is z-20, and the chat is z-30.
   Corner rule: nav and buttons are pills; work cards use a 2rem shell.
 */
 

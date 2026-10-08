@@ -1,4 +1,5 @@
 import { ContactLinks } from "@/components/contact-links";
+import { Reveal } from "@/components/reveal";
 import { profile } from "@/content/profile";
 
 export function ContactSection() {
@@ -8,6 +9,7 @@ export function ContactSection() {
       aria-labelledby="contact-title"
       className="scroll-mt-28 px-4 py-24 md:px-6 md:py-32"
     >
+      <Reveal>
       <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-8">
         <h2
           id="contact-title"
@@ -21,9 +23,10 @@ export function ContactSection() {
           github={profile.github}
         />
         <p className="max-w-[48ch] text-sm leading-relaxed text-muted">
-          The on-page chat will answer questions about this work.
+          Ask the chat in the corner about this work.
         </p>
       </div>
+      </Reveal>
     </section>
   );
 }
