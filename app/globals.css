@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /*
-  Locked dark palette. One accent, cool cyan, used for focus and hover only.
-  Z-index: the grid sits behind the page, the nav is z-20, and the chat is z-30.
+  The page stays near-black. The hero is a cooler, lighter field so the portrait can sit in it.
+  One accent, cool cyan, used for focus and hover only.
+  Z-index: the page grid is -z-10, the hero sticks at z-0, the page sheet covers it at z-10, the nav is z-20, and the chat is z-30.
   Corner rule: nav and buttons are pills; work cards use a 2rem shell.
 */
 
@@ -56,9 +57,84 @@ body {
   outline-offset: 3px;
 }
 
+/* Light hero surface. Tokens flip here so type and buttons stay readable on the pale field. */
+.hero-stage {
+  --hero: #e6e8ee;
+  --background: #e6e8ee;
+  --foreground: #14161c;
+  --muted: #3e4553;
+  background: var(--hero);
+  color: var(--foreground);
+}
+
+@keyframes hero-name-slide {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.hero-name-track {
+  animation: hero-name-slide 26s linear infinite;
+}
+
+/* Opaque sheet so the dark page covers the sticky hero. Grid sits behind the sections. */
+.page-sheet {
+  background-color: var(--background);
+}
+
+.page-sheet-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 50% 12%, black 6%, transparent 62%);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(20 22 28 / 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(20 22 28 / 0.055) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at 50% 42%, black 8%, transparent 72%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero-stage {
+    height: auto;
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .hero-name-frame {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto;
+    margin-top: 1.5rem;
+    overflow: visible;
+  }
+
+  .hero-name-track {
+    animation: none;
+    transform: none !important;
+  }
+
+  .hero-name-copy {
+    display: none;
+  }
+
+  .hero-name {
+    max-width: 10ch;
+    white-space: normal !important;
+    font-size: clamp(3.25rem, 14vw, 6rem) !important;
   }
 }
 

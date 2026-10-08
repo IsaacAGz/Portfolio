@@ -12,10 +12,10 @@ function OutlineLink({ href, label }: { href: string; label: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center gap-3 rounded-full border border-white/15 py-1.5 pr-1.5 pl-5 text-sm font-medium text-foreground ${press}`}
+      className={`group inline-flex items-center gap-3 rounded-full border border-foreground/15 py-1.5 pr-1.5 pl-5 text-sm font-medium text-foreground ${press}`}
     >
       {label}
-      <span className={`${iconNest} bg-white/10 text-foreground`}>
+      <span className={`${iconNest} bg-foreground/10 text-foreground`}>
         <ArrowUpRight size={16} weight="light" aria-hidden="true" />
       </span>
     </a>

@@ -9,11 +9,14 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <WorkSection />
-      <ContactSection />
+      <div className="page-sheet relative z-10 bg-background">
+        <div aria-hidden="true" className="page-sheet-grid pointer-events-none absolute inset-0" />
+        <AboutSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <WorkSection />
+        <ContactSection />
+      </div>
     </>
   );
 }
